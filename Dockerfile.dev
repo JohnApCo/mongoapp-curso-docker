@@ -1,10 +1,23 @@
-FROM node:18
+# Usa una imagen ligera de Node.js
+FROM node:18-alpine
 
-RUN npm i -g nodemon
-RUN mkdir -p /home/app
-
+# Establece el directorio de trabajo
 WORKDIR /home/app
 
+# Instala nodemon globalmente
+RUN npm install -g nodemon
+
+# Copia solo package.json y package-lock.json para aprovechar la caché de Docker
+COPY package*.json ./
+
+# Instala dependencias (incluye las de desarrollo)
+RUN npm install
+
+# Copia el resto del código
+COPY . .
+
+# Expone el puerto de desarrollo
 EXPOSE 3000
 
+# Usa volúmenes en docker-compose para evitar copiar código cada vez
 CMD ["nodemon", "index.js"]
