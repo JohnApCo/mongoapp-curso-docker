@@ -1,61 +1,75 @@
-# Proyecto de Curso - Node.js y Docker
+# MongoApp - Curso Docker
 
-Este proyecto es parte de mi aprendizaje sobre Docker, incluyendo la creación de contenedores y la orquestación con Docker Compose.
+Este proyecto es parte de mi aprendizaje sobre Docker, desde la creación de contenedores hasta la orquestación con Docker Compose.
 
 ## Tecnologías utilizadas
 - **Node.js**
+- **Express.js**
 - **MongoDB**
-- **Docker**
-- **Docker Compose**
+- **Docker & Docker Compose**
 
-## Instalación y ejecución
-
-### 1. Clonar el repositorio
-```sh
-git clone <URL_DEL_REPO>
-cd <NOMBRE_DEL_REPO>
+## Estructura del proyecto
+```
+├── .vscode/                 # Configuración de VSCode
+├── node_modules/            # Dependencias de Node.js
+├── .env                     # Variables de entorno (no incluir en el repo)
+├── .env.example             # Ejemplo de variables de entorno
+├── .gitignore               # Archivos y carpetas ignoradas por Git
+├── docker-compose-dev.yml    # Configuración para desarrollo con Docker Compose
+├── docker-compose.yml        # Configuración principal con Docker Compose
+├── Dockerfile                # Dockerfile para producción
+├── Dockerfile.dev            # Dockerfile para desarrollo
+├── index.js                  # Archivo principal del servidor
+├── package-lock.json         # Bloqueo de versiones de paquetes
+├── package.json              # Configuración del proyecto y dependencias
+├── README.md                 # Documentación del proyecto
+├── Resume.md                 # Archivo adicional
 ```
 
-### 2. Crear el archivo `.env`
-Crea un archivo `.env` en la raíz con las siguientes variables de entorno:
-```env
-MONGO_USER=tu_usuario
-MONGO_PASS=tu_contraseña
+## Instalación y Uso
+### 1. Clonar el repositorio
+```sh
+git clone https://github.com/tu-usuario/mongoapp-curso-docker.git
+cd mongoapp-curso-docker
+```
+
+### 2. Configurar variables de entorno
+Copia el archivo `.env.example` y renómbralo a `.env`, luego edita los valores según sea necesario.
+```sh
+cp .env.example .env
 ```
 
 ### 3. Construir y levantar los contenedores
-Ejecuta el siguiente comando para levantar los servicios:
+Para desarrollo:
+```sh
+docker compose -f docker-compose-dev.yml up --build
+```
+Para producción:
 ```sh
 docker compose up --build -d
 ```
-Esto iniciará los contenedores en segundo plano.
 
-### 4. Ver logs de la aplicación
-```sh
-docker compose logs -f
-```
+### 4. Acceder a la aplicación
+La aplicación se ejecutará en `http://localhost:3000`
 
-### 5. Detener y eliminar los contenedores
-```sh
-docker compose down
-```
-
-## Estructura del Proyecto
-```
-/
-├── src/                # Código fuente de la aplicación
-├── Dockerfile          # Configuración del contenedor
-├── docker-compose.yml  # Orquestación de servicios
-├── .env.example        # Archivo de ejemplo para variables de entorno
-├── .gitignore          # Archivos ignorados en Git
-├── README.md           # Documentación del proyecto
-```
+## Comandos útiles
+- Detener los contenedores:
+  ```sh
+  docker compose down
+  ```
+- Ver logs:
+  ```sh
+  docker compose logs -f
+  ```
+- Inspeccionar contenedores en ejecución:
+  ```sh
+  docker ps
+  ```
 
 ## Notas
-- Se recomienda usar `docker compose` en lugar de `docker-compose`.
-- Asegúrate de tener Docker y Docker Compose instalados en tu sistema.
-- Puedes modificar el `docker-compose.yml` según sea necesario.
+- Asegúrate de tener Docker y Docker Compose instalados antes de ejecutar los comandos.
+- Revisa los archivos Dockerfile y docker-compose.yml para entender la configuración.
 
-¡Feliz aprendizaje con Docker! 🚀
-
+---
+_Proyecto realizado como parte de mi aprendizaje sobre Docker y contenedores._
 
