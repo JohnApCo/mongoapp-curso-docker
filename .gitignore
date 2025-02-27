@@ -1,34 +1,56 @@
-# Ignorar node_modules y dependencias instaladas
+# Archivos y carpetas de Node.js
 node_modules/
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+.DS_Store
 
-# Ignorar archivos de entorno
+# Archivos de Docker
+docker-compose.override.yml
+docker-compose.dev.yml
 .env
 .env.local
 .env.development
 .env.production
+.env.test
+docker/data/
+docker/logs/
 
-# Ignorar archivos de logs
-logs/
+# Archivos de logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+debug.log
 *.out
 *.err
 
-# Ignorar archivos de Docker que no deben subirse
-docker-compose.override.yml
-docker-compose.dev.yml
-docker-compose.logs.yml
-.dockerignore
-Dockerfile.*  # Ignorar Dockerfiles específicos si tienes varios
+# Caché del sistema operativo
+*.swp
+*.swo
+*.swn
+*~
 
-# Ignorar volúmenes de Docker
-volumes/
-data/
-mongo-data/
-
-# Ignorar archivos generados por el sistema
-.DS_Store
-Thumbs.db
+# Archivos de editor/IDE
 .idea/
 .vscode/
+*.sublime-workspace
+
+# Archivos generados por Docker
+**/docker-entrypoint-initdb.d/*
+docker-compose.override.yml
+.dockerignore
+
+# Archivos de volúmenes de bases de datos (Mongo, MySQL, PostgreSQL, etc.)
+/data/
+mongo-data/
+mysql-data/
+postgres-data/
+
+# Otros archivos innecesarios
+coverage/
+dist/
+build/
