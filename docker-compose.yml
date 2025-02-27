@@ -4,19 +4,34 @@ services:
     image: miapp:1
     ports:
       - "3000:3000"
-    links:
-      - monguito
+    depends_on:
+      monguito:
+        condition: service_healthy
+    networks:
+      - mi-red
+    restart: always
+    env_file:
+      - .env
   monguito:
     image: mongo
+    restart: always
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=nico
-      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
+    networks:
+      - mi-red
     volumes:
       - mongo-data:/data/db
       # mysql -> /var/lib/mysql
       # postgres -> /var/lib/postgresql/data
-
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  mi-red:
 volumes:
   mongo-data:

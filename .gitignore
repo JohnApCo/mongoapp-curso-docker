@@ -1,1 +1,34 @@
-node_modules
+# Ignorar node_modules y dependencias instaladas
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorar archivos de entorno
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignorar archivos de logs
+logs/
+*.log
+*.out
+*.err
+
+# Ignorar archivos de Docker que no deben subirse
+docker-compose.override.yml
+docker-compose.dev.yml
+docker-compose.logs.yml
+.dockerignore
+Dockerfile.*  # Ignorar Dockerfiles específicos si tienes varios
+
+# Ignorar volúmenes de Docker
+volumes/
+data/
+mongo-data/
+
+# Ignorar archivos generados por el sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
