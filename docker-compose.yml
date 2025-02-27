@@ -1,7 +1,7 @@
-version: "3.9"
 services:
   chanchito:
     build: .
+    image: miapp:1
     ports:
       - "3000:3000"
     links:
